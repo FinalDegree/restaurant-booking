@@ -1,0 +1,28 @@
+### Создать ресторан
+POST http://localhost:8080/api/restaurants
+Content-Type: application/json
+
+{
+  "name": "Trattoria",
+  "address": "Tallinn, Viru 1",
+  "openTime": "12:00",
+  "closeTime": "23:00"
+}
+
+### Добавить столик
+POST http://localhost:8080/api/restaurants/1/tables
+Content-Type: application/json
+
+{ "tableNumber": 1, "capacity": 4 }
+
+### Список столиков
+GET http://localhost:8080/api/restaurants/1/tables
+
+### Ошибка: повторный номер столика (ожидаем 409)
+POST http://localhost:8080/api/restaurants/1/tables
+Content-Type: application/json
+
+{ "tableNumber": 1, "capacity": 2 }
+
+### Ошибка: несуществующий ресторан (ожидаем 404)
+GET http://localhost:8080/api/restaurants/999
